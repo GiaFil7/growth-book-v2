@@ -4,7 +4,12 @@ import './App.css'
 function App () {
   return (
     <div className='App'>
-      <h1>Hello World!</h1>
+      <div className='header'>header</div>
+      <div className='schedule'>Schedule</div>
+      <div className='goals'>Goals</div>
+      <div className='motivation'>Motivation</div>
+      <div className='todo'>To-do</div>
+      <div className='happiness'>Happiness</div>
     </div>
   )
 }
