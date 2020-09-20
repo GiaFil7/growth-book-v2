@@ -15,7 +15,6 @@ html, body {
   grid-gap: 3px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr 1fr 1fr;
-  text-align: center;
 }
 
 .header {
@@ -86,6 +85,7 @@ textarea {
 h1 {
   align-self: center;
   margin-left: 0.5em;
+  padding-bottom: 0.2em;
 }
 
 h3 { 
@@ -113,4 +113,10 @@ button {
   margin-left: 2%;
   border-radius: 50%;
   box-shadow:0 0 15px 4px rgba(0,0,0,0.3);
+}
+
+.logo {
+  width: 3em;
+  height: 3em;
+  align-self: center;
 }
