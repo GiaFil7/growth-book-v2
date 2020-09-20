@@ -1,17 +1,36 @@
 import React from 'react'
 import './App.css'
 
-function App () {
-  return (
-    <div className='App'>
-      <div className='header'>header</div>
-      <div className='schedule'>Schedule</div>
-      <div className='goals'>Goals</div>
-      <div className='motivation'>Motivation</div>
-      <div className='todo'>To-do</div>
-      <div className='happiness'>Happiness</div>
-    </div>
-  )
+import Schedule from './Components/Schedule'
+import Goals from './Components/Goals'
+import Motivation from './Components/Motivation'
+import Todo from './Components/Todo'
+import Happiness from './Components/Happiness'
+
+class App extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      schedule: [],
+      goals: [],
+      motivation: '',
+      todo: [],
+      happiness: ''
+    }
+  }
+
+  render () {
+    return (
+      <div className='App'>
+        <div className='header'>Header</div>
+        <Schedule />
+        <Goals />
+        <Motivation />
+        <Todo />
+        <Happiness />
+      </div>
+    )
+  }
 }
 
 export default App
