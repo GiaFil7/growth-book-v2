@@ -6,6 +6,7 @@ import Goals from './Components/Goals'
 import Motivation from './Components/Motivation'
 import Todo from './Components/Todo'
 import Happiness from './Components/Happiness'
+import Header from './Components/Header'
 
 class App extends React.Component {
   constructor () {
@@ -22,7 +23,7 @@ class App extends React.Component {
   render () {
     return (
       <div className='App'>
-        <div className='header'>Header</div>
+        <Header />
         <Schedule />
         <Goals />
         <Motivation />

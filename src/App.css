@@ -20,7 +20,8 @@ html, body {
 
 .header {
   grid-column: 1 / -1;
-  height: 2em;
+  display: flex;
+  height: 4em;
   background-color: orange;
 }
 
@@ -80,6 +81,11 @@ textarea {
   grid-column: 1 / -1;
   justify-self: center;
   margin-bottom: 2.5em;
+}
+
+h1 {
+  align-self: center;
+  margin-left: 0.5em;
 }
 
 h3 { 
