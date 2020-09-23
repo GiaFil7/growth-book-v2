@@ -32,15 +32,17 @@ html, body {
 
 .goals {
   background-color: blue;
-  display: flex;
-  border-radius: 3em
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  border-radius: 3em;
 }
 
 .motivation {
   background-color: yellow;
   display: grid;
   grid-template-rows:auto 1fr;
-  border-radius: 3em
+  border-radius: 3em;
 }
 
 .motivation > * {
@@ -49,15 +51,17 @@ html, body {
 
 .todo {
   background-color: green;
-  display: flex;
-  border-radius: 3em
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  border-radius: 3em;
 }
 
 .happiness {
   background-color: lightblue;
   display: grid;
   grid-template-rows:auto 1fr;
-  border-radius: 3em
+  border-radius: 3em;
 }
 
 .happiness > * {
@@ -79,13 +83,17 @@ textarea {
   width: calc(100% - 3em);
   grid-column: 1 / -1;
   justify-self: center;
-  margin-bottom: 2.5em;
+  opacity: 50%;
+  border: none;
+  border-radius: 2em;
+  padding-left: 1em;
 }
 
 h1 {
   align-self: center;
   margin-left: 0.5em;
   padding-bottom: 0.2em;
+  text-align: center;
 }
 
 h3 { 
@@ -93,6 +101,18 @@ h3 {
   margin-left: 10px;
   margin-right: 3%;
   margin-bottom: auto;
+  text-align: center;
+}
+
+p {
+  margin-top: 0;
+}
+
+.bar {
+  grid-column: 1 / -1;
+  height: 1.5em;
+  display: flex;
+  margin-bottom: 1em;
 }
 
 .itemBar {
@@ -100,11 +120,23 @@ h3 {
   height: 1.5em;
   margin-top: 0.8em;
   margin-bottom: 0.5em;
+  margin-right: auto;
 }
 
 .item {
   display: flex;
-  height: 1em;
+  height: 1.5em;
+  grid-column: 1 / -1;
+  margin-left: 0.5em;
+  margin-top: 0.5em;
+}
+
+.item-container {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: flex-start;
+  margin-bottom: 1em;
 }
 
 input[type='text'] {
@@ -112,16 +144,26 @@ input[type='text'] {
   box-shadow:0 0 15px 4px rgba(0,0,0,0.3);
   border-radius: 1em;
   border: 0;
+  opacity: 50%;
+}
+
+input[type='checkbox'] {
+  margin-right: 0.5em;
+  margin-top: 0.4em;
 }
 
 button {
   margin-left: 2%;
   border-radius: 50%;
-  box-shadow:0 0 15px 4px rgba(0,0,0,0.3);
+  opacity: 50%;
 }
 
 .logo {
   width: 3em;
   height: 3em;
   align-self: center;
+}
+
+textarea:focus, input:focus{
+    outline: none;
 }

@@ -99,13 +99,13 @@ class App extends React.Component {
           items={goals}
           name='goals'
         />
-        <Motivation />
+        <Motivation handleChange={this.handleChange} />
         <Todo
           addItem={this.addItem}
           items={todo}
           name='todo'
         />
-        <Happiness />
+        <Happiness handleChange={this.handleChange} />
       </div>
     )
   }
