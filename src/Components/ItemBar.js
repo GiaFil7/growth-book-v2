@@ -3,7 +3,7 @@ import React from 'react'
 function ItemBar (props) {
   return (
     <div className='itemBar'>
-      <input id={props.id} type='text' placeholder={props.placeholder} />
+      <input id={props.id} type='text' placeholder={props.placeholder} autoComplete='off' />
       <button onClick={() => props.addItem(props.name, props.id)}>+</button>
     </div>
   )

@@ -12,7 +12,7 @@ function Item (props) {
       />
       <p>{props.content}</p>
       <button>/</button>
-      <button>X</button>
+      <button onClick={() => props.deleteItem(props.name, props.id)}>X</button>
     </div>
   )
 }

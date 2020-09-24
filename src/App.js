@@ -22,6 +22,7 @@ class App extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.addItem = this.addItem.bind(this)
+    this.deleteItem = this.deleteItem.bind(this)
     this.searchCheckbox = this.searchCheckbox.bind(this)
   }
 
@@ -67,6 +68,11 @@ class App extends React.Component {
     }
   }
 
+  deleteItem (name, id) {
+    const newArray = this.state[name].filter((item) => item.key !== id)
+    this.setState({[name]: newArray})
+  }
+
   render () {
     const goals = this.state.goals.map(item => {
       return <Item
@@ -76,6 +82,7 @@ class App extends React.Component {
         key={item.key}
         id={item.key}
         handleChange={this.handleChange}
+        deleteItem={this.deleteItem}
       />
     })
 
@@ -87,6 +94,7 @@ class App extends React.Component {
         key={item.key}
         id={item.key}
         handleChange={this.handleChange}
+        deleteItem={this.deleteItem}
       />
     })
 
