@@ -10,9 +10,13 @@ function Item (props) {
         checked={props.checked}
         onChange={props.handleChange}
       />
-      <p>{props.content}</p>
-      <button>/</button>
-      <button onClick={() => props.deleteItem(props.name, props.id)}>X</button>
+      <p className={props.checked ? 'completed' : null}>{props.content}</p>
+      <button>
+        <img src='https://img.icons8.com/material-sharp/10/000000/edit.png' alt='/' />
+      </button>
+      <button onClick={() => props.deleteItem(props.name, props.id)}>
+        <img src='https://img.icons8.com/fluent-systems-regular/10/000000/delete-sign.png' alt='X' />
+      </button>
     </div>
   )
 }
