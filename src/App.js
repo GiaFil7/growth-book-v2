@@ -49,7 +49,7 @@ class App extends React.Component {
   }
 
   addItem (name, id) {
-    const desc = document.getElementById(id).value
+    const desc = document.getElementById(id).value.trim()
     if (desc !== '') {
       this.setState(prevState => {
         return ({
