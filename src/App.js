@@ -22,6 +22,7 @@ class App extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.addItem = this.addItem.bind(this)
+    this.editItem = this.editItem.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
     this.searchCheckbox = this.searchCheckbox.bind(this)
   }
@@ -61,10 +62,33 @@ class App extends React.Component {
         return ({[name]: [...prevState[name], {
           checked: false,
           desc: desc,
-          key: this.state.count
+          key: this.state.count,
+          isBeingEdited: false
         }]})
       })
       document.getElementById(id).value = ''
+    }
+  }
+
+  editItem (name, id) {
+    let matchIndex
+    for (let i = 0; i < this.state[name].length; i++) {
+      if (this.state[name][i].key === id) {
+        matchIndex = i
+        break
+      }
+    }
+    const prevState = this.state[name]
+    if (!prevState[matchIndex].isBeingEdited) {
+      prevState[matchIndex].isBeingEdited = true
+      this.setState({[name]: prevState})
+    } else {
+      const newDesc = document.getElementById('edit-' + id).value.trim()
+      if (newDesc !== '') {
+        prevState[matchIndex].desc = newDesc
+        prevState[matchIndex].isBeingEdited = false
+        this.setState({[name]: prevState})
+      }
     }
   }
 
@@ -79,9 +103,11 @@ class App extends React.Component {
         name='goals'
         content={item.desc}
         checked={item.checked}
+        isBeingEdited={item.isBeingEdited}
         key={item.key}
         id={item.key}
         handleChange={this.handleChange}
+        editItem={this.editItem}
         deleteItem={this.deleteItem}
       />
     })
@@ -91,9 +117,11 @@ class App extends React.Component {
         name='todo'
         content={item.desc}
         checked={item.checked}
+        isBeingEdited={item.isBeingEdited}
         key={item.key}
         id={item.key}
         handleChange={this.handleChange}
+        editItem={this.editItem}
         deleteItem={this.deleteItem}
       />
     })

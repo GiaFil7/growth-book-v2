@@ -25,8 +25,15 @@ class Item extends React.Component {
           checked={this.props.checked}
           onChange={this.props.handleChange}
         />
-        <p className={this.props.checked ? 'completed' : null}>{this.props.content}</p>
-        <button className={this.state.isHovered ? 'noselect' : 'hide'}>
+        { this.props.isBeingEdited
+          ? <input
+            id={'edit-' + this.props.id}
+            type='text'
+            defaultValue={this.props.content}
+            autoComplete='off'
+          />
+          : <p className={this.props.checked ? 'completed' : null}>{this.props.content}</p>}
+        <button className={this.state.isHovered ? 'noselect' : 'hide'} onClick={() => this.props.editItem(this.props.name, this.props.id)}>
           <img src='https://img.icons8.com/material-sharp/10/000000/edit.png' alt='/' />
         </button>
         <button className={this.state.isHovered ? 'noselect' : 'hide'} onClick={() => this.props.deleteItem(this.props.name, this.props.id)}>
