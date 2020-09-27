@@ -13,7 +13,7 @@ function Todo (props) {
           name='todo'
         />
       </div>
-      <div className='item-container'>{props.items}</div>
+      <div className='itemContainer'>{props.items}</div>
     </div>
   )
 }

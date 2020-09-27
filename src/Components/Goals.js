@@ -13,7 +13,7 @@ function Goals (props) {
           name='goals'
         />
       </div>
-      <div className='item-container'>{props.items}</div>
+      <div className='itemContainer'>{props.items}</div>
     </div>
   )
 }

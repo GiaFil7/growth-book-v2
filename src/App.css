@@ -27,6 +27,9 @@ html, body {
 .schedule {
   background-color: red;
   grid-row: span 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
   border-radius: 3em;
 }
 
@@ -143,7 +146,7 @@ span {
   margin-top: 0.5em;
 }
 
-.item-container {
+.itemContainer {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 1fr;

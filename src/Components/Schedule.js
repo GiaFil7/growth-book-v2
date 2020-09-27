@@ -8,6 +8,7 @@ function Schedule (props) {
         <h3 className='title'>Schedule</h3>
         <EventBar addEvent={props.addEvent} />
       </div>
+      <div className='itemContainer'>{props.events}</div>
     </div>
   )
 }

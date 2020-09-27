@@ -8,6 +8,7 @@ import Todo from './Components/Todo'
 import Happiness from './Components/Happiness'
 import Header from './Components/Header'
 import Item from './Components/Item'
+import Event from './Components/Event'
 
 class App extends React.Component {
   constructor () {
@@ -109,7 +110,7 @@ class App extends React.Component {
     }
   }
 
-  editItem (name, id) {
+  editItem (name, id, type) {
     let matchIndex
     for (let i = 0; i < this.state[name].length; i++) {
       if (this.state[name][i].key === id) {
@@ -122,12 +123,18 @@ class App extends React.Component {
       prevState[matchIndex].isBeingEdited = true
       this.setState({[name]: prevState})
     } else {
-      const newDesc = document.getElementById('edit-' + id).value.trim()
-      if (newDesc !== '') {
-        prevState[matchIndex].desc = newDesc
-        prevState[matchIndex].isBeingEdited = false
-        this.setState({[name]: prevState})
+      if (type === 'item') {
+        const newDesc = document.getElementById('edit-' + id).value.trim()
+        if (newDesc !== '') {
+          prevState[matchIndex].desc = newDesc
+          prevState[matchIndex].isBeingEdited = false
+          this.setState({[name]: prevState})
+        } else if (type === 'event') {
+
+        }
       }
+
+      // Don't forget to check if valid as in addEvent
     }
   }
 
@@ -137,6 +144,21 @@ class App extends React.Component {
   }
 
   render () {
+    const events = this.state.schedule.map(event => {
+      return <Event
+        desc={event.desc}
+        startHour={event.startHour}
+        startMinutes={event.startMinutes}
+        endHour={event.endHour}
+        endMinutes={event.endMinutes}
+        key={event.key}
+        id={event.key}
+        isBeingEdited={event.isBeingEdited}
+        editItem={this.editItem}
+        deleteItem={this.deleteItem}
+      />
+    })
+
     const goals = this.state.goals.map(item => {
       return <Item
         name='goals'
@@ -168,7 +190,7 @@ class App extends React.Component {
     return (
       <div className='App'>
         <Header />
-        <Schedule addEvent={this.addEvent} />
+        <Schedule addEvent={this.addEvent} events={events} />
         <Goals
           addItem={this.addItem}
           items={goals}
