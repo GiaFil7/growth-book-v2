@@ -109,6 +109,12 @@ p {
   margin-top: 0;
 }
 
+span {
+  margin-left: 0.25em;
+  margin-right: 0.25em;
+  align-self: center;
+}
+
 .completed {
   color: #222;
   text-decoration: line-through;
@@ -151,6 +157,20 @@ input[type='text'] {
   border-radius: 1em;
   border: 0;
   opacity: 50%;
+}
+
+select {
+  box-sizing: border-box;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.3);
+  border-radius: 1em;
+  border: 0;
+  opacity: 50%;
+  width: 3em;
+  outline: none;
+}
+
+#endMinutes {
+  margin-right: 0.5em;
 }
 
 input[type="checkbox"] {

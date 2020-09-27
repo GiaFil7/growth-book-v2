@@ -22,6 +22,7 @@ class App extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.addItem = this.addItem.bind(this)
+    this.addEvent = this.addEvent.bind(this)
     this.editItem = this.editItem.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
     this.searchCheckbox = this.searchCheckbox.bind(this)
@@ -67,6 +68,44 @@ class App extends React.Component {
         }]})
       })
       document.getElementById(id).value = ''
+    }
+  }
+
+  addEvent () {
+    const startHourInput = document.getElementById('startHour')
+    const startHour = startHourInput.options[startHourInput.selectedIndex].value
+    const startMinutesInput = document.getElementById('startMinutes')
+    const startMinutes = startMinutesInput.options[startMinutesInput.selectedIndex].value
+    const endHourInput = document.getElementById('endHour')
+    const endHour = endHourInput.options[endHourInput.selectedIndex].value
+    const endMinutesInput = document.getElementById('endMinutes')
+    const endMinutes = endMinutesInput.options[endMinutesInput.selectedIndex].value
+    const desc = document.getElementById('event').value.trim()
+
+    if (desc !== '') {
+      this.setState(prevState => {
+        return ({
+          count: prevState.count + 1
+        })
+      })
+      this.setState(prevState => {
+        return ({
+          schedule: [...prevState.schedule, {
+            desc: desc,
+            startHour: startHour,
+            startMinutes: startMinutes,
+            endHour: endHour,
+            endMinutes: endMinutes,
+            key: this.state.count,
+            isBeingEdited: false
+          }]
+        })
+      })
+      document.getElementById('event').value = ''
+      startHourInput.selectedIndex = 0
+      startMinutesInput.selectedIndex = 0
+      endHourInput.selectedIndex = 0
+      endMinutesInput.selectedIndex = 0
     }
   }
 
@@ -129,7 +168,7 @@ class App extends React.Component {
     return (
       <div className='App'>
         <Header />
-        <Schedule />
+        <Schedule addEvent={this.addEvent} />
         <Goals
           addItem={this.addItem}
           items={goals}

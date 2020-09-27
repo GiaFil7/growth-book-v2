@@ -1,9 +1,13 @@
 import React from 'react'
+import EventBar from './EventBar'
 
-function Schedule () {
+function Schedule (props) {
   return (
     <div className='schedule'>
-      <h3 className='title'>Schedule</h3>
+      <div className='bar'>
+        <h3 className='title'>Schedule</h3>
+        <EventBar addEvent={props.addEvent} />
+      </div>
     </div>
   )
 }
