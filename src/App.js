@@ -27,6 +27,7 @@ class App extends React.Component {
     this.editItem = this.editItem.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
     this.searchCheckbox = this.searchCheckbox.bind(this)
+    this.checkEvent = this.checkEvent.bind(this)
   }
 
   searchCheckbox (name, checked, key) {
@@ -45,6 +46,19 @@ class App extends React.Component {
       return {[name]: newState}
     })
   }
+
+  checkEvent (startHour, startMinutes, endHour, endMinutes) {
+    if (startHour < endHour) {
+      return true
+    } else if (startHour === endHour) {
+      return (startMinutes < endMinutes)
+    } else {
+      return false
+    }
+  }
+
+  // No overlap
+  // Sort
 
   handleChange (event) {
     const {name, value, type, checked, id} = event.target
@@ -83,7 +97,7 @@ class App extends React.Component {
     const endMinutes = endMinutesInput.options[endMinutesInput.selectedIndex].value
     const desc = document.getElementById('event').value.trim()
 
-    if (desc !== '') {
+    if (desc !== '' && this.checkEvent(startHour, startMinutes, endHour, endMinutes)) {
       this.setState(prevState => {
         return ({
           count: prevState.count + 1
@@ -129,12 +143,31 @@ class App extends React.Component {
           prevState[matchIndex].desc = newDesc
           prevState[matchIndex].isBeingEdited = false
           this.setState({[name]: prevState})
-        } else if (type === 'event') {
+        }
+      } else if (type === 'event') {
+        const startHourInput = document.getElementById('editStartHour' + id)
+        const newStartHour = startHourInput.options[startHourInput.selectedIndex].value
+        const startMinutesInput = document.getElementById('editStartMinutes' + id)
+        const newStartMinutes = startMinutesInput.options[startMinutesInput.selectedIndex].value
+        const endHourInput = document.getElementById('editEndHour' + id)
+        const newEndHour = endHourInput.options[endHourInput.selectedIndex].value
+        const endMinutesInput = document.getElementById('editEndMinutes' + id)
+        const newEndMinutes = endMinutesInput.options[endMinutesInput.selectedIndex].value
+        const newDesc = document.getElementById('event' + id).value.trim()
 
+        if (newDesc !== '' && this.checkEvent(newStartHour, newStartMinutes, newEndHour, newEndMinutes)) {
+          prevState[matchIndex] = {
+            desc: newDesc,
+            startHour: newStartHour,
+            startMinutes: newStartMinutes,
+            endHour: newEndHour,
+            endMinutes: newEndMinutes,
+            key: id,
+            isBeingEdited: false
+          }
+          this.setState({[name]: prevState})
         }
       }
-
-      // Don't forget to check if valid as in addEvent
     }
   }
 

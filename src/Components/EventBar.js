@@ -3,11 +3,11 @@ import React from 'react'
 function EventBar (props) {
   const hours = []
   for (let i = 0; i <= 23; i++) {
-    hours.push(<option value={i} key={i}>{i}</option>)
+    hours.push(<option value={i} key={i}>{i < 10 ? '0' + i : i}</option>)
   }
   const minutes = []
   for (let i = 0; i <= 59; i++) {
-    minutes.push(<option value={i} key={i}>{i}</option>)
+    minutes.push(<option value={i} key={i}>{i < 10 ? '0' + i : i}</option>)
   }
 
   return (

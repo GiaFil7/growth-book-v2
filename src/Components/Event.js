@@ -18,28 +18,32 @@ class Event extends React.Component {
   render () {
     const hours = []
     for (let i = 0; i <= 23; i++) {
-      hours.push(<option value={i} key={i}>{i}</option>)
+      hours.push(<option value={i} key={i}>{i < 10 ? '0' + i : i}</option>)
     }
     const minutes = []
     for (let i = 0; i <= 59; i++) {
-      minutes.push(<option value={i} key={i}>{i}</option>)
+      minutes.push(<option value={i} key={i}>{i < 10 ? '0' + i : i}</option>)
     }
+
+    const startHour = this.props.startHour < 10 ? '0' + this.props.startHour : this.props.startHour
+    const startMinutes = this.props.startMinutes < 10 ? '0' + this.props.startMinutes : this.props.startMinutes
+    const endHour = this.props.endHour < 10 ? '0' + this.props.endHour : this.props.endHour
+    const endMinutes = this.props.endMinutes < 10 ? '0' + this.props.endMinutes : this.props.endMinutes
 
     return (
       <div className='item' onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
         {this.props.isBeingEdited
           ? <div>
-            <select name={'editStartHour-' + this.props.id} id={'editStartHour' + this.props.id}>{hours}</select>
+            <select defaultValue={this.props.startHour} name={'editStartHour' + this.props.id} id={'editStartHour' + this.props.id}>{hours}</select>
             <span>:</span>
-            <select name={'editStartMinutes' + this.props.id} id={'editStartMinutes' + this.props.id}>{minutes}</select>
+            <select defaultValue={this.props.startMinutes} name={'editStartMinutes' + this.props.id} id={'editStartMinutes' + this.props.id}>{minutes}</select>
             <span>-</span>
-            <select name={'editEndHour' + this.props.id} id={'editEndHour' + this.props.id}>{hours}</select>
+            <select defaultValue={this.props.endHour} name={'editEndHour' + this.props.id} id={'editEndHour' + this.props.id}>{hours}</select>
             <span>:</span>
-            <select name={'editEndMinutes' + this.props.id} id={'editEndMinutes' + this.props.id}>{minutes}</select>
-            <input type='text' id='event' placeholder='Add a new event' autoComplete='off' />
-          </div> : <div><p>{this.props.startHour} : {this.props.startMinutes} - {this.props.endHour} : {this.props.endMinutes}</p>
-            <p>{this.props.desc}</p></div>}
-
+            <select defaultValue={this.props.endMinutes} name={'editEndMinutes' + this.props.id} id={'editEndMinutes' + this.props.id}>{minutes}</select>
+            <input type='text' id={'event' + this.props.id} defaultValue={this.props.desc} autoComplete='off' />
+          </div>
+          : <div className='item'><p>{startHour} : {startMinutes} - {endHour} : {endMinutes}</p><p className='desc'>{this.props.desc}</p></div>}
         <button className={this.state.isHovered ? 'noselect' : 'hide'} onClick={() => this.props.editItem('schedule', this.props.id, 'event')}>
           <img src='https://img.icons8.com/material-sharp/10/000000/edit.png' alt='/' />
         </button>
