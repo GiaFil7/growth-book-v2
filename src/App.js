@@ -87,11 +87,9 @@ class App extends React.Component {
         return false
       }
     })
-    console.log(checkArray)
     return checkArray.includes(true)
   }
 
-  // Sort
   // Error messages ?
 
   handleChange (event) {
@@ -213,20 +211,24 @@ class App extends React.Component {
   }
 
   render () {
-    const events = this.state.schedule.map(event => {
-      return <Event
-        desc={event.desc}
-        startHour={event.startHour}
-        startMinutes={event.startMinutes}
-        endHour={event.endHour}
-        endMinutes={event.endMinutes}
-        key={event.key}
-        id={event.key}
-        isBeingEdited={event.isBeingEdited}
-        editItem={this.editItem}
-        deleteItem={this.deleteItem}
-      />
-    })
+    const events = [].concat(this.state.schedule)
+      .sort(function (x, y) {
+        return (parseInt(x.startHour) - parseInt(y.startHour) || parseInt(x.startMinutes) - parseInt(y.startMinutes))
+      })
+      .map(event => {
+        return <Event
+          desc={event.desc}
+          startHour={event.startHour}
+          startMinutes={event.startMinutes}
+          endHour={event.endHour}
+          endMinutes={event.endMinutes}
+          key={event.key}
+          id={event.key}
+          isBeingEdited={event.isBeingEdited}
+          editItem={this.editItem}
+          deleteItem={this.deleteItem}
+        />
+      })
 
     const goals = this.state.goals.map(item => {
       return <Item
