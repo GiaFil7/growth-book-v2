@@ -28,6 +28,7 @@ class App extends React.Component {
     this.deleteItem = this.deleteItem.bind(this)
     this.searchCheckbox = this.searchCheckbox.bind(this)
     this.checkEvent = this.checkEvent.bind(this)
+    this.checkOverlap = this.checkOverlap.bind(this)
   }
 
   searchCheckbox (name, checked, key) {
@@ -48,6 +49,11 @@ class App extends React.Component {
   }
 
   checkEvent (startHour, startMinutes, endHour, endMinutes) {
+    startHour = parseInt(startHour)
+    startMinutes = parseInt(startMinutes)
+    endHour = parseInt(endHour)
+    endMinutes = parseInt(endMinutes)
+
     if (startHour < endHour) {
       return true
     } else if (startHour === endHour) {
@@ -57,8 +63,36 @@ class App extends React.Component {
     }
   }
 
-  // No overlap
+  checkOverlap (newStartHour, newStartMinutes, newEndHour, newEndMinutes, id) {
+    newStartHour = parseInt(newStartHour)
+    newStartMinutes = parseInt(newStartMinutes)
+    newEndHour = parseInt(newEndHour)
+    newEndMinutes = parseInt(newEndMinutes)
+    const checkArray = this.state.schedule.map(item => {
+      if (item.key !== id) {
+        if (newStartHour > item.startHour && newStartHour < item.endHour) {
+          return true
+        } else if (newEndHour > item.startHour && newEndHour < item.endHour) {
+          return true
+        } else if (newStartHour < item.startHour && newEndHour > item.endHour) {
+          return true
+        } else if (newStartHour === item.startHour) {
+          return (newStartMinutes >= item.endMinutes || newEndMinutes <= item.startMinutes)
+        } else if (newEndHour === item.endHour) {
+          return true
+        } else {
+          return false
+        }
+      } else {
+        return false
+      }
+    })
+    console.log(checkArray)
+    return checkArray.includes(true)
+  }
+
   // Sort
+  // Error messages ?
 
   handleChange (event) {
     const {name, value, type, checked, id} = event.target
@@ -88,16 +122,16 @@ class App extends React.Component {
 
   addEvent () {
     const startHourInput = document.getElementById('startHour')
-    const startHour = startHourInput.options[startHourInput.selectedIndex].value
+    const startHour = parseInt(startHourInput.options[startHourInput.selectedIndex].value)
     const startMinutesInput = document.getElementById('startMinutes')
-    const startMinutes = startMinutesInput.options[startMinutesInput.selectedIndex].value
+    const startMinutes = parseInt(startMinutesInput.options[startMinutesInput.selectedIndex].value)
     const endHourInput = document.getElementById('endHour')
-    const endHour = endHourInput.options[endHourInput.selectedIndex].value
+    const endHour = parseInt(endHourInput.options[endHourInput.selectedIndex].value)
     const endMinutesInput = document.getElementById('endMinutes')
-    const endMinutes = endMinutesInput.options[endMinutesInput.selectedIndex].value
+    const endMinutes = parseInt(endMinutesInput.options[endMinutesInput.selectedIndex].value)
     const desc = document.getElementById('event').value.trim()
 
-    if (desc !== '' && this.checkEvent(startHour, startMinutes, endHour, endMinutes)) {
+    if (desc !== '' && this.checkEvent(startHour, startMinutes, endHour, endMinutes) && !this.checkOverlap(startHour, startMinutes, endHour, endMinutes, 0)) {
       this.setState(prevState => {
         return ({
           count: prevState.count + 1
@@ -146,16 +180,18 @@ class App extends React.Component {
         }
       } else if (type === 'event') {
         const startHourInput = document.getElementById('editStartHour' + id)
-        const newStartHour = startHourInput.options[startHourInput.selectedIndex].value
+        const newStartHour = parseInt(startHourInput.options[startHourInput.selectedIndex].value)
         const startMinutesInput = document.getElementById('editStartMinutes' + id)
-        const newStartMinutes = startMinutesInput.options[startMinutesInput.selectedIndex].value
+        const newStartMinutes = parseInt(startMinutesInput.options[startMinutesInput.selectedIndex].value)
         const endHourInput = document.getElementById('editEndHour' + id)
-        const newEndHour = endHourInput.options[endHourInput.selectedIndex].value
+        const newEndHour = parseInt(endHourInput.options[endHourInput.selectedIndex].value)
         const endMinutesInput = document.getElementById('editEndMinutes' + id)
-        const newEndMinutes = endMinutesInput.options[endMinutesInput.selectedIndex].value
+        const newEndMinutes = parseInt(endMinutesInput.options[endMinutesInput.selectedIndex].value)
         const newDesc = document.getElementById('event' + id).value.trim()
 
-        if (newDesc !== '' && this.checkEvent(newStartHour, newStartMinutes, newEndHour, newEndMinutes)) {
+        if (newDesc !== '' &&
+        this.checkEvent(newStartHour, newStartMinutes, newEndHour, newEndMinutes) &&
+        !this.checkOverlap(newStartHour, newStartMinutes, newEndHour, newEndMinutes, id)) {
           prevState[matchIndex] = {
             desc: newDesc,
             startHour: newStartHour,
