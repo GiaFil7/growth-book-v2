@@ -246,3 +246,17 @@ img {
 .hide {
   display: none;
 }
+
+.date {
+  justify-self: space-between;
+  align-self: center;
+  height: 3rem;
+  margin-right: 1em;
+  font-size: 25px;
+  text-align: center;
+  width: 8em
+}
+
+.header > h1 {
+  margin-right: auto;
+}

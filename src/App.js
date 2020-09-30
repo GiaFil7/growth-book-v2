@@ -19,7 +19,8 @@ class App extends React.Component {
       motivation: '',
       todo: [],
       happiness: '',
-      count: 0
+      count: 0,
+      date: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.addItem = this.addItem.bind(this)
@@ -89,8 +90,6 @@ class App extends React.Component {
     })
     return checkArray.includes(true)
   }
-
-  // Error messages ?
 
   handleChange (event) {
     const {name, value, type, checked, id} = event.target
@@ -260,7 +259,7 @@ class App extends React.Component {
 
     return (
       <div className='App'>
-        <Header />
+        <Header handleChange={this.handleChange} />
         <Schedule addEvent={this.addEvent} events={events} />
         <Goals
           addItem={this.addItem}
