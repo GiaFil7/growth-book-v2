@@ -77,7 +77,7 @@ class App extends React.Component {
         } else if (newStartHour < item.startHour && newEndHour > item.endHour) {
           return true
         } else if (newStartHour === item.startHour) {
-          return (newStartMinutes >= item.endMinutes || newEndMinutes <= item.startMinutes)
+          return !(newStartMinutes >= item.endMinutes || newEndMinutes <= item.startMinutes)
         } else if (newEndHour === item.endHour) {
           return true
         } else {
