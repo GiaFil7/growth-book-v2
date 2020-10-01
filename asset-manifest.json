@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/growth-book-v2/static/css/main.5694be86.chunk.css",
+    "main.js": "/growth-book-v2/static/js/main.77dccba4.chunk.js",
+    "main.js.map": "/growth-book-v2/static/js/main.77dccba4.chunk.js.map",
+    "runtime-main.js": "/growth-book-v2/static/js/runtime-main.26782556.js",
+    "runtime-main.js.map": "/growth-book-v2/static/js/runtime-main.26782556.js.map",
+    "static/js/2.a9e750e4.chunk.js": "/growth-book-v2/static/js/2.a9e750e4.chunk.js",
+    "static/js/2.a9e750e4.chunk.js.map": "/growth-book-v2/static/js/2.a9e750e4.chunk.js.map",
+    "index.html": "/growth-book-v2/index.html",
+    "precache-manifest.d90b4638160ce14fe5f47e5d20198209.js": "/growth-book-v2/precache-manifest.d90b4638160ce14fe5f47e5d20198209.js",
+    "service-worker.js": "/growth-book-v2/service-worker.js",
+    "static/css/main.5694be86.chunk.css.map": "/growth-book-v2/static/css/main.5694be86.chunk.css.map",
+    "static/js/2.a9e750e4.chunk.js.LICENSE.txt": "/growth-book-v2/static/js/2.a9e750e4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.26782556.js",
+    "static/js/2.a9e750e4.chunk.js",
+    "static/css/main.5694be86.chunk.css",
+    "static/js/main.77dccba4.chunk.js"
+  ]
+}
