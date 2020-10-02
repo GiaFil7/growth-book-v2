@@ -15,6 +15,7 @@ html, body {
   grid-gap: 3px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr 1fr 1fr;
+  font-family: 'Kalam', cursive;
 }
 
 .header {
@@ -46,6 +47,7 @@ html, body {
   display: grid;
   grid-template-rows:auto 1fr;
   border-radius: 3em;
+  min-height: 10em;
 }
 
 .motivation > * {
@@ -65,6 +67,7 @@ html, body {
   display: grid;
   grid-template-rows:auto 1fr;
   border-radius: 3em;
+  min-height: 10em;
 }
 
 .happiness > * {
@@ -76,7 +79,7 @@ html, body {
   display: flex;
   margin-left: 1.5em;
   margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.25em;
 }
 
 textarea {
@@ -90,6 +93,8 @@ textarea {
   border: none;
   border-radius: 2em;
   padding-left: 1em;
+  font-family: 'Kalam', cursive;
+  font-size: 16px;
 }
 
 h1 {
@@ -97,20 +102,21 @@ h1 {
   margin-left: 0.5em;
   padding-bottom: 0.2em;
   text-align: center;
+  font-family: 'Sansita Swashed', cursive;
 }
 
 h3 { 
-  padding-top: 0.25em;
   margin-left: 10px;
   margin-right: 3%;
   margin-bottom: auto;
   text-align: center;
+  font-size: 24px;
   height: 100%;
 }
 
 p {
-  margin-top: 0;
   align-self: center;
+  text-align: center;
 }
 
 .desc {
@@ -133,6 +139,7 @@ span {
   height: 1.5em;
   display: flex;
   margin-bottom: 1em;
+  align-content: center;
 }
 
 .itemBar {
@@ -141,6 +148,7 @@ span {
   margin-top: 0.8em;
   margin-bottom: 0.5em;
   margin-right: auto;
+  align-content: center;
 }
 
 .item {
@@ -155,7 +163,7 @@ span {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 1fr;
-  align-items: flex-start;
+  align-content: flex-start;
   margin-bottom: 1em;
 }
 
@@ -165,6 +173,7 @@ input[type='text'] {
   border-radius: 1em;
   border: 0;
   opacity: 50%;
+  font-family: 'Kalam', cursive;
 }
 
 select {
@@ -175,6 +184,7 @@ select {
   opacity: 50%;
   width: 3em;
   outline: none;
+  font-family: 'Kalam', cursive;
 }
 
 #endMinutes {
@@ -252,6 +262,7 @@ img {
   align-self: center;
   height: 3rem;
   margin-right: 1em;
+  font-family: 'Kalam', cursive;
   font-size: 25px;
   text-align: center;
   width: 8em
