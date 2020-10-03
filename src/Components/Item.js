@@ -32,7 +32,7 @@ class Item extends React.Component {
             defaultValue={this.props.content}
             autoComplete='off'
           />
-          : <p className={this.props.checked ? 'completed' : null}>{this.props.content}</p>}
+          : <p id='itemText' className={this.props.checked ? 'completed' : null}>{this.props.content}</p>}
         <button className={this.state.isHovered ? 'noselect' : 'hide'} onClick={() => this.props.editItem(this.props.name, this.props.id, 'item')}>
           <img src='https://img.icons8.com/material-sharp/10/000000/edit.png' alt='/' />
         </button>

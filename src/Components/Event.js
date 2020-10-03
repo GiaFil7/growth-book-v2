@@ -43,7 +43,7 @@ class Event extends React.Component {
             <select defaultValue={this.props.endMinutes} name={'editEndMinutes' + this.props.id} id={'editEndMinutes' + this.props.id}>{minutes}</select>
             <input type='text' id={'event' + this.props.id} defaultValue={this.props.desc} autoComplete='off' />
           </div>
-          : <div className='item'><p>{startHour} : {startMinutes} - {endHour} : {endMinutes}</p><p className='desc'>{this.props.desc}</p></div>}
+          : <div className='item'><p>{startHour} : {startMinutes} - {endHour} : {endMinutes}</p><p id='eventText' className='desc'>{this.props.desc}</p></div>}
         <button className={this.state.isHovered ? 'noselect' : 'hide'} onClick={() => this.props.editItem('schedule', this.props.id, 'event')}>
           <img src='https://img.icons8.com/material-sharp/10/000000/edit.png' alt='/' />
         </button>
