@@ -18,6 +18,15 @@ html, body {
   font-family: 'Kalam', cursive;
 }
 
+@media screen and (max-width: 992px) {
+  .App {
+    display: grid;
+    grid-gap: 3px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto repeat(6, 1fr);
+  }
+}
+
 .header {
   grid-column: 1 / -1;
   display: flex;
